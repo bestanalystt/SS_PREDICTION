@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SS PREDICTION</title>
 
-<!-- GOOGLE FONTS -->
-<link rel="preconnect" href="https://fonts.googleapis.com/">
-<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&family=Oswald:wght@700&display=swap" rel="stylesheet">
-
-<!-- FONT AWESOME -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/all.min.css">
 
-<!-- BUTTON + PAGE STYLES -->
 <style>
 body{
     margin:0;
@@ -28,12 +22,12 @@ body{
     max-width:420px;
     margin:40px auto;
     background:rgba(0,0,0,0.75);
-    padding:25px 15px;
+    padding:25px 15px 30px;
     border-radius:18px;
     text-align:center;
 }
 
-/* PROFILE IMAGE */
+/* PROFILE */
 .profile-picture img{
     width:110px;
     height:110px;
@@ -42,33 +36,49 @@ body{
     object-fit:cover;
 }
 
-/* HEADING */
+/* TITLE */
 .heading1{
     font-family:'Oswald',sans-serif;
     font-size:2.1rem;
     margin:12px 0;
 }
 
-/* BUTTON WRAPPER */
+/* ================= BUTTON REAL EFFECTS ================= */
+
 .button{
-    margin:15px;
+    margin:18px 15px;
 }
 
-/* BUTTON EFFECTS (DONO BUTTON KE LIYE) */
 .button .btn{
     position:relative;
     display:block;
-    overflow:hidden;
-    padding:15px 20px;
-    border-radius:12px;
+    padding:16px 20px;
+    border-radius:14px;
     font-size:16px;
     font-weight:bold;
     text-decoration:none;
-    color:#fff !important;
-    background:linear-gradient(135deg,#00c6ff,#0072ff);
-    transition:0.3s ease;
+    color:#fff;
+    overflow:hidden;
+
+    /* MIX COLOR MOVING GRADIENT */
+    background:linear-gradient(
+        120deg,
+        #00c6ff,
+        #7f00ff,
+        #ff0080,
+        #00ffcc
+    );
+    background-size:300% 300%;
+
+    /* CONTINUOUS ANIMATION */
+    animation:
+        gradientMove 4s ease infinite,
+        zoomPulse 1.8s ease-in-out infinite;
+
+    box-shadow:0 0 18px rgba(0,198,255,0.7);
 }
 
+/* SHINE LIGHT */
 .button .btn::before{
     content:"";
     position:absolute;
@@ -81,19 +91,34 @@ body{
 }
 
 .button .btn:hover::before{
-    animation:stripe 0.7s linear;
+    animation:shineMove 0.7s linear;
 }
 
+/* HOVER EXTRA ZOOM */
 .button .btn:hover{
-    transform:scale(1.06);
-    box-shadow:0 0 20px rgba(0,198,255,0.9);
+    transform:scale(1.1);
+    box-shadow:0 0 30px rgba(0,255,255,1);
 }
 
+/* CLICK */
 .button .btn:active{
     transform:scale(0.95);
 }
 
-@keyframes stripe{
+/* ================= ANIMATIONS ================= */
+
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+@keyframes zoomPulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.06);}
+}
+
+@keyframes shineMove{
     from{left:-120%;}
     to{left:120%;}
 }
@@ -113,27 +138,7 @@ body{
 }
 </style>
 
-<!-- META PIXEL -->
-<script>
-!function(f,b,e,v,n,t,s){
-if(f.fbq)return;n=f.fbq=function(){
-n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
-t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)
-}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1896030701303478');
-fbq('track','PageView');
-</script>
-<noscript>
-<img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1896030701303478&ev=PageView&noscript=1"/>
-</noscript>
-
 </head>
-
 <body>
 
 <div class="hero">
@@ -151,8 +156,7 @@ src="https://www.facebook.com/tr?id=1896030701303478&ev=PageView&noscript=1"/>
     <!-- BUTTON 1 -->
     <div class="button">
         <a href="https://t.me/+Pmkpdct0ZHZiYjNl" class="btn">
-            Join Cricket Ka Sabse Bada Tipper 
-            <i class="fa-brands fa-telegram"></i>
+            Join Cricket Ka Sabse Bada Tipper 🚀
         </a>
     </div>
 
@@ -167,31 +171,25 @@ src="https://www.facebook.com/tr?id=1896030701303478&ev=PageView&noscript=1"/>
     <!-- BUTTON 2 -->
     <div class="button">
         <a href="https://t.me/+Pmkpdct0ZHZiYjNl" class="btn">
-            SUBSCRIBE FOR FREE 
-            <i class="fa-brands fa-telegram"></i>
+            SUBSCRIBE FOR FREE 🔥
         </a>
     </div>
 
 </div>
 
-<!-- SUBSCRIBER COUNTER -->
 <script>
-const targetCount = 74028;
-const duration = 2000;
-const displayElement = document.getElementById('subscriber-count');
-let start = null;
+const target = 74028;
+const el = document.getElementById("subscriber-count");
+let i = 0;
 
-function countUp(timestamp){
-    if(!start) start = timestamp;
-    const progress = timestamp - start;
-    const count = Math.min(
-        Math.floor((progress / duration) * targetCount),
-        targetCount
-    );
-    displayElement.textContent = count.toLocaleString() + " Subscribers";
-    if(count < targetCount) requestAnimationFrame(countUp);
-}
-requestAnimationFrame(countUp);
+const interval = setInterval(()=>{
+    i += Math.ceil(target / 80);
+    if(i >= target){
+        i = target;
+        clearInterval(interval);
+    }
+    el.innerText = i.toLocaleString()+" Subscribers";
+},30);
 </script>
 
 </body>
