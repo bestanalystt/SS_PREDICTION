@@ -1,5 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+/* ===== FORCE ANIMATED BUTTON OVERRIDE ===== */
+
+.button a.btn{
+    position: relative !important;
+    display: block !important;
+    padding: 16px 20px !important;
+    border-radius: 16px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #fff !important;
+    text-decoration: none !important;
+    overflow: hidden !important;
+
+    /* 🔥 MIX COLOR ANIMATED GRADIENT */
+    background: linear-gradient(
+        120deg,
+        #00c6ff,
+        #7f00ff,
+        #ff0080,
+        #00ffcc
+    ) !important;
+    background-size: 300% 300% !important;
+
+    /* 🔥 REAL ANIMATIONS */
+    animation:
+        gradientMove 3s ease infinite,
+        zoomPulse 1.6s ease-in-out infinite !important;
+
+    box-shadow: 0 0 25px rgba(0,255,255,0.9) !important;
+}
+
+/* ✨ LIGHT SWEEP */
+.button a.btn::before{
+    content: "" !important;
+    position: absolute !important;
+    top: 0;
+    left: -120%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.4);
+    transform: skewX(-20deg);
+}
+
+.button a.btn:hover::before{
+    animation: shineMove 0.8s linear;
+}
+
+/* 🔍 EXTRA HOVER ZOOM */
+.button a.btn:hover{
+    transform: scale(1.15) !important;
+    box-shadow: 0 0 40px rgba(0,255,255,1) !important;
+}
+
+/* 👆 CLICK PRESS */
+.button a.btn:active{
+    transform: scale(0.92) !important;
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+@keyframes zoomPulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.08);}
+}
+
+@keyframes shineMove{
+    from{left:-120%;}
+    to{left:120%;}
+}
+</style>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
