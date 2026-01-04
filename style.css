@@ -130,8 +130,8 @@
 </div>
 
 <script>
-    const targetCount = 66,697;
-    const duration = 2000;
+    const targetCount = 66697;
+    const duration = 7200;
     const display = document.getElementById("subscriber-count");
     let start = null;
 
